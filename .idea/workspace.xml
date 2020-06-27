@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="31d1ca1d-5fca-484a-bd4e-3365af009ca3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/aurora-borealis-1933239.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/bird-pen-peacock-lure-65894.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/buildings-near-body-of-water-at-night-1519088.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/green-leaves-1931141.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/people-riding-on-boat-during-sunset-3930012.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/pexels-photo-814499.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/photo-1523731407965-2430cd12f5e4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/photo-of-trees-and-mountain-1324803.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/pink-petaled-flowers-2362699.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/selective-focus-photo-of-brown-grass-1776268.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/selective-focus-photo-of-white-brimstone-butterfly-on-white-1257645.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/selective-focus-photography-of-monarch-butterfly-perched-on-1212693.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/assets/summer-flowers-909.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authenName/authenName.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go Application" />
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="C:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1dbuZC7wrLPjooRNs4QETqxRI5g" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\BNSMO\Desktop\Authennicate-backend" />
+      <recent name="C:\Users\BNSMO\Desktop\Authennicate-backend\configs" />
+      <recent name="C:\Users\BNSMO\Desktop\Authennicate-backend\config" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build authenName" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="authenName" />
+      <working_directory value="$PROJECT_DIR$/authenName" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/authenName/main.go" />
+      <package value="authenName" />
+      <directory value="$PROJECT_DIR$/authenName" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build authenName" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="31d1ca1d-5fca-484a-bd4e-3365af009ca3" name="Default Changelist" comment="" />
+      <created>1592706166648</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592706166648</updated>
+      <workItem from="1592706170011" duration="1184000" />
+      <workItem from="1592707368759" duration="700000" />
+      <workItem from="1592708082811" duration="24239000" />
+      <workItem from="1592805035110" duration="7628000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <auto-vendoring-mode>false</auto-vendoring-mode>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="751" y="449" key="#GOROOT" timestamp="1592706469911">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="751" y="449" key="#GOROOT/0.0.1920.1040@0.0.1920.1040" timestamp="1592706469911" />
+    <state x="751" y="352" key="#Go_Modules" timestamp="1592706491190">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="751" y="352" key="#Go_Modules/0.0.1920.1040@0.0.1920.1040" timestamp="1592706491190" />
+    <state x="413" y="173" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592707805943">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="413" y="173" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592707805943" />
+    <state x="668" y="145" key="#go_build_Authennicate-backend" timestamp="1592707752993">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="668" y="145" key="#go_build_Authennicate-backend/0.0.1920.1040@0.0.1920.1040" timestamp="1592707752993" />
+    <state width="1875" height="127" key="GridCell.Tab.0.bottom" timestamp="1592839594166">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="127" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592839594166" />
+    <state width="1875" height="127" key="GridCell.Tab.0.center" timestamp="1592839594166">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="127" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592839594166" />
+    <state width="1875" height="127" key="GridCell.Tab.0.left" timestamp="1592839594166">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="127" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592839594166" />
+    <state width="1875" height="127" key="GridCell.Tab.0.right" timestamp="1592839594166">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="127" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592839594166" />
+    <state x="439" y="93" key="SettingsEditor" timestamp="1592807410006">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="439" y="93" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592807410006" />
+    <state x="341" y="139" key="new project wizard" timestamp="1592708504337">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="341" y="139" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1592708504337" />
+  </component>
+</project>
