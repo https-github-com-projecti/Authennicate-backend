@@ -53,6 +53,7 @@ func Router(r *gin.Engine) {
 		user.POST("/create", api.CreateUser)
 		user.GET("/getId/:id", api.GetUserById)
 		user.POST("/login", api.Login)
+		user.GET("/image/:id", api.ImageByUserId)
 	}
 
 	upload := r.Group("/upload")

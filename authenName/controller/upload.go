@@ -54,7 +54,7 @@ func UploadAssets(c *gin.Context) {
 				})
 				return
 			}
-			uploads.Path = "Upload/profile/" + filename
+			uploads.Path = "/upload/assets/" + filename
 			uploads.Status = "Assets"
 			uploads.Name = filename
 			res, err := repo.InsertUpload(uploads)
@@ -110,7 +110,7 @@ func UploadProfile(c *gin.Context) {
 			})
 			return
 		}
-		uploads.Path = "Upload/profile/" + filename
+		uploads.Path = "/upload/profile/" + filename
 		uploads.Status = "Profile"
 		uploads.Name = filename
 		res, err := repo.InsertUpload(uploads)
@@ -136,7 +136,6 @@ func UploadProfile(c *gin.Context) {
 
 func DeleteFileNoUser(c *gin.Context) {
 	id := c.Param("id")
-	fmt.Println("id : ", id)
 	file, err := repo.FindById(id)
 	if err != nil {
 		c.JSON(200, gin.H{

@@ -12,6 +12,7 @@ type UploadRepository interface {
 	InsertUpload(upload model.Upload) (*mongo.InsertOneResult, error)
 	FindByPathAndStatus(id primitive.ObjectID) (model.Upload, error)
 	DeleteById(id string) (*mongo.DeleteResult, error)
+	FindById(id string) (model.Upload, error)
 }
 
 var uploadCollection *mongo.Collection
