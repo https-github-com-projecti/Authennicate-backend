@@ -1,0 +1,23 @@
+package model
+
+import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"time"
+)
+
+type Subject struct {
+	ID           primitive.ObjectID     `gorm:"primaryKey" bson:"_id,omitempty"`
+	Name         string                 `bson:"name,omitempty"`
+	Description  string                 `bson:"description,omitempty"`
+	SubjectID    string                 `bson:"subjectId,omitempty"`
+	Key          int32                  `bson:"key,omitempty"`
+	Password     string                 `bson:"password,omitempty"`
+	Private      bool                   `bson:"private,omitempty"`
+	User         primitive.ObjectID     `gorm:"foreignKey:id" bson:"User,omitempty"`
+	Authen       primitive.ObjectID     `gorm:"foreignKey:id" bson:"Authen,omitempty"`
+	CreateAt     time.Time              `bson:"createAt,omitempty"`
+	CreateEnd    time.Time              `bson:"createEnd,omitempty"`
+	CreateUpdate time.Time              `bson:"createUpdate,omitempty"`
+	Score        primitive.ObjectID     `gorm:"many2many:Subject_Score" bson:"Score,omitempty"`
+	TimeClass    map[string]interface{} `bson:"timeClass,omitempty"`
+}

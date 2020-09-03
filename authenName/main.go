@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"authenName/config"
-	"github.com/gin-gonic/gin"
 	"authenName/route"
+	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	fmt.Print("String serve...!\n")
+	fmt.Print("Start serve...!\n")
 	config.Connect()
 
 	r := gin.Default()

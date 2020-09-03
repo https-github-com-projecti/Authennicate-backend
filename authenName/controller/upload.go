@@ -3,11 +3,12 @@ package controller
 import (
 	"authenName/model"
 	repo "authenName/repository"
+	"authenName/tools"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"log"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 func check(e error) {
@@ -17,7 +18,7 @@ func check(e error) {
 }
 
 func UploadAssets(c *gin.Context) {
-	err := os.MkdirAll("Upload/assets", 0755)
+	err := os.MkdirAll("Upload/assets", 0444)
 	check(err)
 	// Multipart form
 	form, err := c.MultipartForm()
@@ -54,9 +55,11 @@ func UploadAssets(c *gin.Context) {
 				})
 				return
 			}
-			uploads.Path = "/upload/assets/" + filename
+			uploads.Path = "Upload/assets/" + filename
 			uploads.Status = "Assets"
 			uploads.Name = filename
+			uploads.CreateAt = tools.TimeNow()
+			uploads.CreateEnd = tools.TimeNow()
 			res, err := repo.InsertUpload(uploads)
 			if err != nil {
 				c.JSON(200, gin.H{
@@ -75,21 +78,20 @@ func UploadAssets(c *gin.Context) {
 				"id":          res.InsertedID,
 			})
 		}
+		time.Sleep(500 * time.Millisecond)
 	}
 }
 
 func UploadProfile(c *gin.Context) {
-	err := os.MkdirAll("Upload/profile", 0755)
+	err := os.MkdirAll("Upload/profile", 0444)
 	check(err)
 
 	// single file
 	file, _ := c.FormFile("file")
-	log.Println(file.Filename)
 	filename := c.PostForm("filename")
 
 	uploads := model.Upload{}
 	res, errFind := repo.FindByPathAndStatus("Upload/profile/"+filename, "Profile")
-	fmt.Println("err ", err)
 	if errFind == nil {
 		c.JSON(200, gin.H{
 			"code":        200,
@@ -110,9 +112,11 @@ func UploadProfile(c *gin.Context) {
 			})
 			return
 		}
-		uploads.Path = "/upload/profile/" + filename
+		uploads.Path = "Upload/profile/" + filename
 		uploads.Status = "Profile"
 		uploads.Name = filename
+		uploads.CreateAt = tools.TimeNow()
+		uploads.CreateEnd = tools.TimeNow()
 		res, err := repo.InsertUpload(uploads)
 		if err != nil {
 			c.JSON(200, gin.H{
@@ -162,7 +166,7 @@ func DeleteFileNoUser(c *gin.Context) {
 			"code":        304,
 			"status":      "error",
 			"message":     "File cannot be remove from database",
-			"description": "The image you delete The delete is now Error. " + err.Error(),
+			"description": "The image you delete The delete is now Error. " + errDel.Error(),
 		})
 		return
 	}

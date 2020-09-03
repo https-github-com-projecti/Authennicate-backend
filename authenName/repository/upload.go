@@ -24,7 +24,6 @@ func CreateCollectionUpload(DB *mongo.Database) {
 func InsertUpload(upload model.Upload) (*mongo.InsertOneResult, error) {
 	insertResult , err := uploadCollection.InsertOne(context.TODO(), upload)
 	if err != nil {
-		panic(err)
 		return nil, err
 	}
 	return insertResult, nil

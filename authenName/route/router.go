@@ -15,13 +15,13 @@ func Router(r *gin.Engine) {
 	// - Credentials share
 	// - Preflight requests cached for 12 hours
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3001/"},
+		AllowOrigins:     []string{"http://localhost:4200"},
 		AllowMethods:     []string{"POST, GET, OPTIONS, PUT, DELETE, UPDATE"},
-		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"},
+		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With", "XMLHttpRequest"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
-			return origin == "http://localhost:3000"
+			return origin == "http://localhost:3001"
 		},
 		MaxAge: 12 * time.Hour,
 	}))
@@ -54,12 +54,13 @@ func Router(r *gin.Engine) {
 		user.GET("/getId/:id", api.GetUserById)
 		user.POST("/login", api.Login)
 		user.GET("/image/:id", api.ImageByUserId)
+		user.DELETE("/delete/:id", api.DeleteUserById)
 	}
 
 	upload := r.Group("/upload")
 	{
 		upload.Static("/assets", "Upload/assets")
-		upload.Static("/profile", "Upload/profile")
+		upload.Static("/profile", "")
 		upload.POST("/uploadAssets", api.UploadAssets)
 		upload.POST("/uploadProfile", api.UploadProfile)
 		upload.DELETE("/delete/file/:id", api.DeleteFileNoUser)
