@@ -1,0 +1,12 @@
+# docker-compose.yml
+version: "2"
+
+services:
+  app:
+    image: golang:latest
+    volumes:
+      - .:/go/src/authenName
+    working_dir: /go/src/authenName
+    ports:
+    - 3001:3001
+    command: go run main.go
