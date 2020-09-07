@@ -60,10 +60,28 @@ func Router(r *gin.Engine) {
 	upload := r.Group("/upload")
 	{
 		upload.Static("/assets", "Upload/assets")
-		upload.Static("/profile", "")
+		upload.Static("/profile", "Upload/profile")
+		upload.Static("/qrcode", "Upload/qrcode")
 		upload.POST("/uploadAssets", api.UploadAssets)
 		upload.POST("/uploadProfile", api.UploadProfile)
+		upload.POST("/uploadQrcode", api.UploadQrCode)
 		upload.DELETE("/delete/file/:id", api.DeleteFileNoUser)
+		upload.GET("/data-upload/:id", api.GetPathUploadById)
 	}
+
+	subject := r.Group("/subject")
+	{
+		subject.POST("/create", api.CreateSubject)
+		subject.GET("/subject-all/:id", api.GetSubjectAll)
+		subject.DELETE("/delete/:id", api.DeleteSubject)
+		subject.GET("/subject/:id", api.GetSubject)
+	}
+
+	authen := r.Group("/authen")
+	{
+		authen.POST("/create", api.CreateAuthen)
+		authen.GET("/subject-authen/:id", api.GetAuthenAllForSubject)
+	}
+
 	r.Run(config.PortServe)
 }

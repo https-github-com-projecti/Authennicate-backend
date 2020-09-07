@@ -13,7 +13,7 @@ import (
 func Connect() {
 	// Set client options
 	ctx, cancel := context.WithTimeout(context.Background(), 72000*time.Second)
-	clientOptions := options.Client().ApplyURI(portDB)
+	clientOptions := options.Client().ApplyURI(MongoServer)
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(ctx, clientOptions)
@@ -25,12 +25,14 @@ func Connect() {
 	err = client.Ping(ctx, nil)
 	defer cancel()
 	if err != nil {
-		log.Fatal("Can not connect DB url :: " + portDB + " = "  + err.Error())
+		log.Fatal("Can not connect DB url :: " + MongoServer + " = "  + err.Error())
 	}
 
 	DB := client.Database("authnName")
 	repo.CreateCollectionUser(DB)
 	repo.CreateCollectionUpload(DB)
+	repo.CreateCollectionSubject(DB)
+	repo.CreateCollectionAuthen(DB)
 
 	fmt.Println("Connected to MongoDB!")
 }
