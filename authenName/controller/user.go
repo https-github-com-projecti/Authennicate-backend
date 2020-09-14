@@ -3,7 +3,6 @@ package controller
 import (
 	"authenName/model"
 	repo "authenName/repository"
-	"authenName/tools"
 	"crypto/sha512"
 	b64 "encoding/base64"
 	"github.com/gin-gonic/gin"
@@ -66,8 +65,8 @@ func CreateUser(c *gin.Context) {
 	sha512_ := sha512.New()
 	sha512_.Write([]byte(user.Password))
 	user.Password = b64.StdEncoding.EncodeToString(sha512_.Sum(nil))
-	user.CreateAt = tools.TimeNow()
-	user.CreateEnd = tools.TimeNow()
+	user.CreateAt = time.Now()
+	user.CreateEnd = time.Now()
 	user.CreateUpdate = time.Time{}
 
 	res := repo.CreateUser(user)

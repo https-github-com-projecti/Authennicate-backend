@@ -12,8 +12,8 @@ import (
 func CreateSubject(c *gin.Context) {
 	subject := model.Subject{}
 	_ = c.BindJSON(&subject)
-	subject.CreateAt = tools.TimeNow()
-	subject.CreateEnd = tools.TimeNow()
+	subject.CreateAt = time.Now()
+	subject.CreateEnd = time.Now()
 	subject.CreateUpdate = time.Time{}
 	subject.Key = tools.GenerateKey()
 

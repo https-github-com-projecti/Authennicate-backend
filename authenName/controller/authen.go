@@ -3,15 +3,15 @@ package controller
 import (
 	"authenName/model"
 	repo "authenName/repository"
-	"authenName/tools"
 	"github.com/gin-gonic/gin"
+	"time"
 )
 
 func CreateAuthen(c *gin.Context) {
 	authen := model.Authen{}
 	_ = c.BindJSON(&authen)
-	authen.CreateAt = tools.TimeNow()
-	authen.CreateEnd = tools.TimeNow()
+	authen.CreateAt = time.Now()
+	authen.CreateEnd = time.Now()
 
 	res := repo.CreateAuthen(authen)
 	if res != nil {

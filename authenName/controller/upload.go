@@ -3,7 +3,6 @@ package controller
 import (
 	"authenName/model"
 	repo "authenName/repository"
-	"authenName/tools"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"os"
@@ -58,8 +57,8 @@ func UploadAssets(c *gin.Context) {
 			uploads.Path = "upload/assets/" + filename
 			uploads.Status = "Assets"
 			uploads.Name = filename
-			uploads.CreateAt = tools.TimeNow()
-			uploads.CreateEnd = tools.TimeNow()
+			uploads.CreateAt = time.Now()
+			uploads.CreateEnd = time.Now()
 			res, err := repo.InsertUpload(uploads)
 			if err != nil {
 				c.JSON(200, gin.H{
@@ -115,8 +114,8 @@ func UploadProfile(c *gin.Context) {
 		uploads.Path = "upload/profile/" + filename
 		uploads.Status = "Profile"
 		uploads.Name = filename
-		uploads.CreateAt = tools.TimeNow()
-		uploads.CreateEnd = tools.TimeNow()
+		uploads.CreateAt = time.Now()
+		uploads.CreateEnd = time.Now()
 		res, err := repo.InsertUpload(uploads)
 		if err != nil {
 			c.JSON(200, gin.H{
@@ -212,8 +211,8 @@ func UploadQrCode(c *gin.Context) {
 		uploads.Path = "upload/qrcode/" + filename
 		uploads.Status = "Qrcode"
 		uploads.Name = filename
-		uploads.CreateAt = tools.TimeNow()
-		uploads.CreateEnd = tools.TimeNow()
+		uploads.CreateAt = time.Now()
+		uploads.CreateEnd = time.Now()
 		res, err := repo.InsertUpload(uploads)
 		if err != nil {
 			c.JSON(200, gin.H{
