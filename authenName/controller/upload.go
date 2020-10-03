@@ -2,6 +2,7 @@ package controller
 
 import (
 	"authenName/model"
+	"authenName/properties"
 	repo "authenName/repository"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -17,7 +18,7 @@ func check(e error) {
 }
 
 func UploadAssets(c *gin.Context) {
-	err := os.MkdirAll("Upload/assets", 0444)
+	err := os.MkdirAll(properties.Path+"\\export\\files\\"+"Upload\\assets", 0755)
 	check(err)
 	// Multipart form
 	form, err := c.MultipartForm()
@@ -34,7 +35,7 @@ func UploadAssets(c *gin.Context) {
 	for _, file := range files {
 		filename := filepath.Base(file.Filename)
 		uploads := model.Upload{}
-		res, errFind := repo.FindByPathAndStatus("upload/profile/"+filename, "Profile")
+		res, errFind := repo.FindByPathAndStatus("d:\\export\\files\\upload\\profile\\"+filename, "Profile")
 		if errFind == nil {
 			c.JSON(200, gin.H{
 				"code":        200,
@@ -45,7 +46,7 @@ func UploadAssets(c *gin.Context) {
 			})
 			return
 		} else {
-			if err := c.SaveUploadedFile(file, "upload/assets/"+filename); err != nil {
+			if err := c.SaveUploadedFile(file, properties.Path+"\\export\\files\\upload\\assets\\"+filename); err != nil {
 				c.JSON(200, gin.H{
 					"code":        304,
 					"status":      "error",
@@ -54,7 +55,7 @@ func UploadAssets(c *gin.Context) {
 				})
 				return
 			}
-			uploads.Path = "upload/assets/" + filename
+			uploads.Path = "d:\\export\\files\\upload\\assets\\" + filename
 			uploads.Status = "Assets"
 			uploads.Name = filename
 			uploads.CreateAt = time.Now()
@@ -82,7 +83,7 @@ func UploadAssets(c *gin.Context) {
 }
 
 func UploadProfile(c *gin.Context) {
-	err := os.MkdirAll("Upload/profile", 0444)
+	err := os.MkdirAll(properties.Path+"\\export\\files\\"+"Upload\\profile", 0755)
 	check(err)
 
 	// single file
@@ -90,7 +91,7 @@ func UploadProfile(c *gin.Context) {
 	filename := c.PostForm("filename")
 
 	uploads := model.Upload{}
-	res, errFind := repo.FindByPathAndStatus("upload/profile/"+filename, "Profile")
+	res, errFind := repo.FindByPathAndStatus("d:\\export\\files\\upload\\profile\\"+filename, "Profile")
 	if errFind == nil {
 		c.JSON(200, gin.H{
 			"code":        200,
@@ -102,7 +103,7 @@ func UploadProfile(c *gin.Context) {
 		return
 	} else {
 		// Upload the file to specific dst.
-		if err := c.SaveUploadedFile(file, "upload/profile/"+filename); err != nil {
+		if err := c.SaveUploadedFile(file, properties.Path+"\\export\\files\\"+"upload\\profile\\"+filename); err != nil {
 			c.JSON(200, gin.H{
 				"code":        304,
 				"status":      "error",
@@ -111,7 +112,7 @@ func UploadProfile(c *gin.Context) {
 			})
 			return
 		}
-		uploads.Path = "upload/profile/" + filename
+		uploads.Path = "d:\\export\\files\\upload\\profile\\" + filename
 		uploads.Status = "Profile"
 		uploads.Name = filename
 		uploads.CreateAt = time.Now()
@@ -179,7 +180,7 @@ func DeleteFileNoUser(c *gin.Context) {
 }
 
 func UploadQrCode(c *gin.Context) {
-	err := os.MkdirAll("Upload/qrcode", 0444)
+	err := os.MkdirAll(properties.Path+"\\export\\files\\"+"Upload\\qrcode", 0755)
 	check(err)
 
 	// single file
@@ -187,7 +188,7 @@ func UploadQrCode(c *gin.Context) {
 	filename := c.PostForm("filename")
 
 	uploads := model.Upload{}
-	res, errFind := repo.FindByPathAndStatus("upload/qrcode/"+filename, "Qrcode")
+	res, errFind := repo.FindByPathAndStatus("d:\\export\\files\\upload\\qrcode\\"+filename, "Qrcode")
 	if errFind == nil {
 		c.JSON(200, gin.H{
 			"code":        200,
@@ -199,7 +200,7 @@ func UploadQrCode(c *gin.Context) {
 		return
 	} else {
 		// Upload the file to specific dst.
-		if err := c.SaveUploadedFile(file, "upload/qrcode/"+filename); err != nil {
+		if err := c.SaveUploadedFile(file, properties.Path+"\\export\\files\\"+"upload\\qrcode\\"+filename); err != nil {
 			c.JSON(200, gin.H{
 				"code":        304,
 				"status":      "error",
@@ -208,7 +209,7 @@ func UploadQrCode(c *gin.Context) {
 			})
 			return
 		}
-		uploads.Path = "upload/qrcode/" + filename
+		uploads.Path = "d:\\export\\files\\upload\\qrcode\\" + filename
 		uploads.Status = "Qrcode"
 		uploads.Name = filename
 		uploads.CreateAt = time.Now()
@@ -234,7 +235,7 @@ func UploadQrCode(c *gin.Context) {
 	}
 }
 
-func GetPathUploadById(c *gin.Context){
+func GetPathUploadById(c *gin.Context) {
 	id := c.Param("id")
 	upload, errFind := repo.FindByUserId(id)
 	if errFind != nil || upload.Name == "" {
@@ -251,7 +252,7 @@ func GetPathUploadById(c *gin.Context){
 			"status":      "success",
 			"message":     "Find success",
 			"description": "The upload you find is Success.",
-			"upload":        upload,
+			"upload":      upload,
 		})
 	}
 }

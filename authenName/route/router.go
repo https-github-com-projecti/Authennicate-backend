@@ -1,8 +1,8 @@
 package route
 
 import (
-	"authenName/config"
 	api "authenName/controller"
+	"authenName/properties"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"time"
@@ -59,9 +59,9 @@ func Router(r *gin.Engine) {
 
 	upload := r.Group("/upload")
 	{
-		upload.Static("/assets", "Upload/assets")
-		upload.Static("/profile", "Upload/profile")
-		upload.Static("/qrcode", "Upload/qrcode")
+		upload.Static("/assets", properties.Path + "\\export\\files\\Upload\\assets")
+		upload.Static("/profile", properties.Path + "\\export\\files\\Upload\\profile")
+		upload.Static("/qrcode",  properties.Path + "\\export\\files\\Upload\\qrcode")
 		upload.POST("/uploadAssets", api.UploadAssets)
 		upload.POST("/uploadProfile", api.UploadProfile)
 		upload.POST("/uploadQrcode", api.UploadQrCode)
@@ -83,5 +83,5 @@ func Router(r *gin.Engine) {
 		authen.GET("/subject-authen/:id", api.GetAuthenAllForSubject)
 	}
 
-	r.Run(config.PortServe)
+	r.Run(properties.PortServe)
 }
