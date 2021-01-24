@@ -5,8 +5,9 @@ import (
 	repo "authenName/repository"
 	"authenName/tools"
 	"github.com/gin-gonic/gin"
-	"log"
+	// "log"
 	"time"
+	"fmt"
 )
 
 func CreateSubject(c *gin.Context) {
@@ -17,10 +18,9 @@ func CreateSubject(c *gin.Context) {
 	subject.CreateUpdate = time.Time{}
 	subject.Key = tools.GenerateKey()
 
-	assets, err := repo.FindAllByStatus("Assets")
-	if err != nil {
-		log.Fatal(err)
-	} else {
+	assets, _ := repo.FindAllByStatus("Assets")
+	if len(assets) != 0 {
+		fmt.Println("Random Picture")
 		var num = len(assets)
 		num = tools.Random(0, num)
 		upload := assets[num]

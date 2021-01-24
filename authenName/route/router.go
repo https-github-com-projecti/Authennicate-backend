@@ -15,7 +15,7 @@ func Router(r *gin.Engine) {
 	// - Credentials share
 	// - Preflight requests cached for 12 hours
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowOrigins:     []string{"http://fourdust.kozow.com:3000", "http://localhost:3000"},
 		AllowMethods:     []string{"POST, GET, OPTIONS, PUT, DELETE, UPDATE"},
 		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With", "XMLHttpRequest"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -59,9 +59,9 @@ func Router(r *gin.Engine) {
 
 	upload := r.Group("/upload")
 	{
-		upload.Static("/assets", properties.Path + "\\export\\files\\Upload\\assets")
-		upload.Static("/profile", properties.Path + "\\export\\files\\Upload\\profile")
-		upload.Static("/qrcode",  properties.Path + "\\export\\files\\Upload\\qrcode")
+		upload.Static("/assets", properties.Path + "/export/files/Upload/assets")
+		upload.Static("/profile", properties.Path + "/export/files/Upload/profile")
+		upload.Static("/qrcode",  properties.Path + "/export/files/Upload/qrcode")
 		upload.POST("/uploadAssets", api.UploadAssets)
 		upload.POST("/uploadProfile", api.UploadProfile)
 		upload.POST("/uploadQrcode", api.UploadQrCode)

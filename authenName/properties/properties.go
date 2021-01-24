@@ -1,7 +1,7 @@
 package properties
 
 const (
-	PortServe = ":8080"
+	PortServe = ":3001"
 	MongoServer = "mongodb://admin:password@fourdust.kozow.com:27017"
-	Path = "/go/src/authenName"
+	Path = "D:"
 )
