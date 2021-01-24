@@ -15,7 +15,7 @@ func Router(r *gin.Engine) {
 	// - Credentials share
 	// - Preflight requests cached for 12 hours
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:4200"},
+		AllowOrigins:     []string{"http://localhost:3000"},
 		AllowMethods:     []string{"POST, GET, OPTIONS, PUT, DELETE, UPDATE"},
 		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With", "XMLHttpRequest"},
 		ExposeHeaders:    []string{"Content-Length"},

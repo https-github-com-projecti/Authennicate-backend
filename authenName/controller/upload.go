@@ -46,7 +46,7 @@ func UploadAssets(c *gin.Context) {
 			})
 			return
 		} else {
-			if err := c.SaveUploadedFile(file, properties.Path+"\\export\\files\\upload\\assets\\"+filename); err != nil {
+			if err := c.SaveUploadedFile(file, properties.Path+"\\export\\files\\upload\\profile\\"+filename); err != nil {
 				c.JSON(200, gin.H{
 					"code":        304,
 					"status":      "error",
@@ -91,7 +91,7 @@ func UploadProfile(c *gin.Context) {
 	filename := c.PostForm("filename")
 
 	uploads := model.Upload{}
-	res, errFind := repo.FindByPathAndStatus("d:\\export\\files\\upload\\profile\\"+filename, "Profile")
+	res, errFind := repo.FindByPathAndStatus(properties.Path+"\\export\\files\\upload\\profile\\"+filename, "Profile")
 	if errFind == nil {
 		c.JSON(200, gin.H{
 			"code":        200,
