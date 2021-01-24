@@ -1,8 +1,8 @@
 package route
 
 import (
-	"authenName/config"
 	api "authenName/controller"
+	"authenName/properties"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"time"
@@ -15,7 +15,7 @@ func Router(r *gin.Engine) {
 	// - Credentials share
 	// - Preflight requests cached for 12 hours
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:4200"},
+		AllowOrigins:     []string{"http://localhost:3000"},
 		AllowMethods:     []string{"POST, GET, OPTIONS, PUT, DELETE, UPDATE"},
 		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With", "XMLHttpRequest"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -59,11 +59,29 @@ func Router(r *gin.Engine) {
 
 	upload := r.Group("/upload")
 	{
-		upload.Static("/assets", "Upload/assets")
-		upload.Static("/profile", "")
+		upload.Static("/assets", properties.Path + "\\export\\files\\Upload\\assets")
+		upload.Static("/profile", properties.Path + "\\export\\files\\Upload\\profile")
+		upload.Static("/qrcode",  properties.Path + "\\export\\files\\Upload\\qrcode")
 		upload.POST("/uploadAssets", api.UploadAssets)
 		upload.POST("/uploadProfile", api.UploadProfile)
+		upload.POST("/uploadQrcode", api.UploadQrCode)
 		upload.DELETE("/delete/file/:id", api.DeleteFileNoUser)
+		upload.GET("/data-upload/:id", api.GetPathUploadById)
 	}
-	r.Run(config.PortServe)
+
+	subject := r.Group("/subject")
+	{
+		subject.POST("/create", api.CreateSubject)
+		subject.GET("/subject-all/:id", api.GetSubjectAll)
+		subject.DELETE("/delete/:id", api.DeleteSubject)
+		subject.GET("/subject/:id", api.GetSubject)
+	}
+
+	authen := r.Group("/authen")
+	{
+		authen.POST("/create", api.CreateAuthen)
+		authen.GET("/subject-authen/:id", api.GetAuthenAllForSubject)
+	}
+
+	r.Run(properties.PortServe)
 }
