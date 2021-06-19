@@ -1,9 +1,10 @@
 package model
 
 import (
+	"time"
+
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"gorm.io/gorm"
-	"time"
 )
 
 type UserInfo struct {
@@ -23,6 +24,7 @@ type User struct {
 	Email        string             `bson:"email,omitempty"`
 	Subject      primitive.ObjectID `gorm:"foreignKey:ID;references:name" bson:"Subject,omitempty"`
 	Score        primitive.ObjectID `gorm:"many2many:Score_User" bson:"Score,omitempty"`
+	Role         primitive.ObjectID `gorm:"foreignKey:id" bson:"Role,omitempty"`
 }
 
 type UserLogin struct {

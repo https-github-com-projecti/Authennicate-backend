@@ -3,11 +3,13 @@ version: "3.5"
 
 services:
   app-golang:
-    image: golang:1.14
+    # image
+    build:
+      context: .
     restart: always
     volumes:
       - .:/go/src/authenName
     working_dir: /go/src/authenName
     ports:
-    - 3001:8080
+      - 3001:3001
     command: go run main.go

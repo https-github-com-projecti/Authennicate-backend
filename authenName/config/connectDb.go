@@ -5,10 +5,11 @@ import (
 	repo "authenName/repository"
 	"context"
 	"fmt"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"time"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func Connect() {
@@ -26,7 +27,7 @@ func Connect() {
 	err = client.Ping(ctx, nil)
 	defer cancel()
 	if err != nil {
-		log.Fatal("Can not connect DB url :: " + properties.MongoServer + " = "  + err.Error())
+		log.Fatal("Can not connect DB url :: " + properties.MongoServer + " = " + err.Error())
 	}
 
 	DB := client.Database("authnName")
@@ -34,6 +35,7 @@ func Connect() {
 	repo.CreateCollectionUpload(DB)
 	repo.CreateCollectionSubject(DB)
 	repo.CreateCollectionAuthen(DB)
+	repo.CreateCollectionRole(DB)
 
 	fmt.Println("Connected to MongoDB!")
 }
