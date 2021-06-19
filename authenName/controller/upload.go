@@ -18,7 +18,7 @@ func check(e error) {
 }
 
 func UploadAssets(c *gin.Context) {
-	err := os.MkdirAll(properties.Path+"\\export\\files\\"+"Upload\\assets", 0755)
+	err := os.MkdirAll(properties.Path+"/export/files/Upload/assets", 0755)
 	check(err)
 	// Multipart form
 	form, err := c.MultipartForm()
@@ -32,109 +32,112 @@ func UploadAssets(c *gin.Context) {
 		return
 	}
 	files := form.File["files"]
-	for _, file := range files {
-		filename := filepath.Base(file.Filename)
-		uploads := model.Upload{}
-		res, errFind := repo.FindByPathAndStatus("d:\\export\\files\\upload\\profile\\"+filename, "Profile")
-		if errFind == nil {
-			c.JSON(200, gin.H{
-				"code":        200,
-				"status":      "warning",
-				"message":     "This file already exists",
-				"description": "The image you uploaded The image already exists in the database.",
-				"id":          res.ID,
-			})
-			return
-		} else {
-			if err := c.SaveUploadedFile(file, properties.Path+"\\export\\files\\upload\\profile\\"+filename); err != nil {
+	if (files != nil) {
+		for _, file := range files {
+			filename := filepath.Base(file.Filename)
+			uploads := model.Upload{}
+			res, errFind := repo.FindByPathAndStatus(properties.Path + "/export/files/Upload/assets/" + filename, "Profile")
+			if errFind == nil {
 				c.JSON(200, gin.H{
-					"code":        304,
-					"status":      "error",
-					"message":     "File cannot be saved",
-					"description": "The image you uploaded The upload is now Error. " + err.Error(),
+					"code":        200,
+					"status":      "warning",
+					"message":     "This file already exists",
+					"description": "The image you uploaded The image already exists in the database.",
+					"id":          res.ID,
 				})
 				return
-			}
-			uploads.Path = "d:\\export\\files\\upload\\assets\\" + filename
-			uploads.Status = "Assets"
-			uploads.Name = filename
-			uploads.CreateAt = time.Now()
-			uploads.CreateEnd = time.Now()
-			res, err := repo.InsertUpload(uploads)
-			if err != nil {
+			} else {
+				if err := c.SaveUploadedFile(file, properties.Path + "/export/files/Upload/assets/" + filename); err != nil {
+					c.JSON(200, gin.H{
+						"code":        304,
+						"status":      "error",
+						"message":     "File cannot be saved",
+						"description": "The image you uploaded The upload is now Error. " + err.Error(),
+					})
+					return
+				}
+				uploads.Path = properties.Path + "/export/files/Upload/assets/" + filename
+				uploads.Status = "Assets"
+				uploads.Name = filename
+				uploads.CreateAt = time.Now()
+				uploads.CreateEnd = time.Now()
+				res, err := repo.InsertUpload(uploads)
+				if err != nil {
+					c.JSON(200, gin.H{
+						"code":        304,
+						"status":      "error",
+						"message":     "File cannot be saved to database",
+						"description": "The image you uploaded The upload is now Error. " + err.Error(),
+					})
+					return
+				}
 				c.JSON(200, gin.H{
-					"code":        304,
-					"status":      "error",
-					"message":     "File cannot be saved to database",
-					"description": "The image you uploaded The upload is now Error. " + err.Error(),
+					"code":        200,
+					"status":      "success",
+					"message":     "Successfully saved data",
+					"description": "The image you uploaded The upload is now complete is " + filename + " files.",
+					"id":          res.InsertedID,
 				})
-				return
 			}
-			c.JSON(200, gin.H{
-				"code":        200,
-				"status":      "success",
-				"message":     "Successfully saved data",
-				"description": "The image you uploaded The upload is now complete is " + filename + " files.",
-				"id":          res.InsertedID,
-			})
+			time.Sleep(500 * time.Millisecond)
 		}
-		time.Sleep(500 * time.Millisecond)
 	}
 }
 
 func UploadProfile(c *gin.Context) {
-	err := os.MkdirAll(properties.Path+"\\export\\files\\"+"Upload\\profile", 0755)
+	err := os.MkdirAll(properties.Path + "/export/files/Upload/profile", 0755)
 	check(err)
 
 	// single file
 	file, _ := c.FormFile("file")
 	filename := c.PostForm("filename")
-
-	uploads := model.Upload{}
-	res, errFind := repo.FindByPathAndStatus(properties.Path+"\\export\\files\\upload\\profile\\"+filename, "Profile")
-	if errFind == nil {
-		c.JSON(200, gin.H{
-			"code":        200,
-			"status":      "warning",
-			"message":     "This file already exists",
-			"description": "The image you uploaded The image already exists in the database.",
-			"id":          res.ID,
-		})
-		return
-	} else {
-		// Upload the file to specific dst.
-		if err := c.SaveUploadedFile(file, properties.Path+"\\export\\files\\"+"upload\\profile\\"+filename); err != nil {
-			c.JSON(200, gin.H{
-				"code":        304,
-				"status":      "error",
-				"message":     "File cannot be saved",
-				"description": "The image you uploaded The upload is now Error. " + err.Error(),
-			})
-			return
-		}
-		uploads.Path = "d:\\export\\files\\upload\\profile\\" + filename
-		uploads.Status = "Profile"
-		uploads.Name = filename
-		uploads.CreateAt = time.Now()
-		uploads.CreateEnd = time.Now()
-		res, err := repo.InsertUpload(uploads)
-		if err != nil {
-			c.JSON(200, gin.H{
-				"code":        304,
-				"status":      "error",
-				"message":     "File cannot be saved to database",
-				"description": "The image you uploaded The upload is now Error. " + err.Error(),
-			})
-			return
-		}
-		c.JSON(200, gin.H{
-			"code":        200,
-			"status":      "success",
-			"message":     "Successfully saved data",
-			"description": "The image you uploaded The upload is now complete is " + filename + " files.",
-			"id":          res.InsertedID,
-		})
-		return
+    if (file != nil){
+        uploads := model.Upload{}
+        res, errFind := repo.FindByPathAndStatus(properties.Path + "/export/files/Upload/profile/" + filename, "Profile")
+        if errFind == nil {
+            c.JSON(200, gin.H{
+                "code":        200,
+                "status":      "warning",
+                "message":     "This file already exists",
+                "description": "The image you uploaded The image already exists in the database.",
+                "id":          res.ID,
+            })
+            return
+        } else {
+            // Upload the file to specific dst.
+            if err := c.SaveUploadedFile(file, properties.Path + "/export/files/Upload/profile/" + filename); err != nil {
+                c.JSON(200, gin.H{
+                    "code":        304,
+                    "status":      "error",
+                    "message":     "File cannot be saved",
+                    "description": "The image you uploaded The upload is now Error. " + err.Error(),
+                })
+                return
+            }
+            uploads.Path = properties.Path + "/export/files/Upload/profile/" + filename
+            uploads.Status = "Profile"
+            uploads.Name = filename
+            uploads.CreateAt = time.Now()
+            uploads.CreateEnd = time.Now()
+            res, err := repo.InsertUpload(uploads)
+            if err != nil {
+                c.JSON(200, gin.H{
+                    "code":        304,
+                    "status":      "error",
+                    "message":     "File cannot be saved to database",
+                    "description": "The image you uploaded The upload is now Error. " + err.Error(),
+                })
+                return
+            }
+            c.JSON(200, gin.H{
+                "code":        200,
+                "status":      "success",
+                "message":     "Successfully saved data",
+                "description": "The image you uploaded The upload is now complete is " + filename + " files.",
+                "id":          res.InsertedID,
+            })
+            return
+        }
 	}
 }
 

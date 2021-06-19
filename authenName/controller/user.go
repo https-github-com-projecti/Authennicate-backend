@@ -115,7 +115,7 @@ func ImageByUserId(c *gin.Context) {
 		"status":      "success",
 		"message":     "Find Path Success",
 		"description": "The path you find is Success.",
-		"path":        upload.Path,
+		"path":        upload.Name,
 	})
 }
 

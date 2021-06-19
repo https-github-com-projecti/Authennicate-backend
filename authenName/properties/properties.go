@@ -1,7 +1,7 @@
 package properties
 
 const (
-	PortServe = ":8080"
-	MongoServer = "mongodb://admin:password@fourdust.kozow.com:27017"
-	Path = "/go/src/authenName"
+	PortServe   = ":3001"
+	MongoServer = "mongodb+srv://project-Admin:sswqpPzzO2DMYBQX@edtech.1pf6z.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+	Path        = "/mnt/c/Users/BNSMO/Documents/Edtech/Authennicate-backend/authenName"
 )

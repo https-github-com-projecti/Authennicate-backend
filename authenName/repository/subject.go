@@ -3,10 +3,11 @@ package repository
 import (
 	"authenName/model"
 	"context"
+	"log"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"log"
 )
 
 type SubjectRepository interface {
@@ -15,6 +16,7 @@ type SubjectRepository interface {
 	DeleteSubjectById(id primitive.ObjectID) (*mongo.DeleteResult, error)
 	GetSubjectForUserId(id primitive.ObjectID) ([]*model.Subject, error)
 	GetSubjectById(id string) (model.Subject, error)
+	GetSubjectBySubKey(key int64) (model.Subject, error)
 }
 
 var subjectCollection *mongo.Collection
@@ -87,4 +89,10 @@ func GetSubjectById(id string) (model.Subject, error) {
 	docID, err := primitive.ObjectIDFromHex(id)
 	err = subjectCollection.FindOne(context.TODO(), bson.M{"_id": docID}).Decode(&subject)
 	return subject, err
+}
+
+func GetSubjectBySubKey(key int64) (model.Subject, error) {
+	subject := model.Subject{}
+	error := subjectCollection.FindOne(context.TODO(), bson.M{"key": key}).Decode(&subject)
+	return subject, error
 }

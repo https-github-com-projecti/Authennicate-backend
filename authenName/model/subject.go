@@ -1,8 +1,9 @@
 package model
 
 import (
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type Subject struct {
@@ -13,6 +14,7 @@ type Subject struct {
 	Key          int64              `bson:"key,omitempty"`
 	Password     string             `bson:"password,omitempty"`
 	Private      string             `bson:"private,omitempty"`
+	Status       string             `bson:"status,omitempty"`
 	User         primitive.ObjectID `gorm:"foreignKey:id" bson:"User,omitempty"`
 	Authen       primitive.ObjectID `gorm:"foreignKey:id" bson:"Authen,omitempty"`
 	Upload       primitive.ObjectID `gorm:"foreignKey:id" bson:"Upload,omitempty"`

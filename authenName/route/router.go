@@ -3,9 +3,11 @@ package route
 import (
 	api "authenName/controller"
 	"authenName/properties"
+	websocket "authenName/websocket"
+	"time"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"time"
 )
 
 func Router(r *gin.Engine) {
@@ -15,13 +17,13 @@ func Router(r *gin.Engine) {
 	// - Credentials share
 	// - Preflight requests cached for 12 hours
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowOrigins:     []string{"http://localhost:3000", "http://192.168.43.201:3000"},
 		AllowMethods:     []string{"POST, GET, OPTIONS, PUT, DELETE, UPDATE"},
 		AllowHeaders:     []string{"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With", "XMLHttpRequest"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
-			return origin == "http://localhost:3001"
+			return origin == "http://192.168.43.201:3001"
 		},
 		MaxAge: 12 * time.Hour,
 	}))
@@ -59,9 +61,9 @@ func Router(r *gin.Engine) {
 
 	upload := r.Group("/upload")
 	{
-		upload.Static("/assets", properties.Path + "\\export\\files\\Upload\\assets")
-		upload.Static("/profile", properties.Path + "\\export\\files\\Upload\\profile")
-		upload.Static("/qrcode",  properties.Path + "\\export\\files\\Upload\\qrcode")
+		upload.Static("/assets", properties.Path+"/export/files/Upload/assets")
+		upload.Static("/profile", properties.Path+"/export/files/Upload/profile")
+		upload.Static("/qrcode", properties.Path+"/export/files/Upload/qrcode")
 		upload.POST("/uploadAssets", api.UploadAssets)
 		upload.POST("/uploadProfile", api.UploadProfile)
 		upload.POST("/uploadQrcode", api.UploadQrCode)
@@ -72,9 +74,12 @@ func Router(r *gin.Engine) {
 	subject := r.Group("/subject")
 	{
 		subject.POST("/create", api.CreateSubject)
+		subject.POST("/createjoin", api.CreateJoinSubject)
 		subject.GET("/subject-all/:id", api.GetSubjectAll)
 		subject.DELETE("/delete/:id", api.DeleteSubject)
 		subject.GET("/subject/:id", api.GetSubject)
+		subject.GET("/subject-keys/:id", api.GetSubjectBySubjectKey)
+		subject.POST("/check-sub-pass", api.CheckPasswordSubject)
 	}
 
 	authen := r.Group("/authen")
@@ -83,5 +88,15 @@ func Router(r *gin.Engine) {
 		authen.GET("/subject-authen/:id", api.GetAuthenAllForSubject)
 	}
 
+	role := r.Group("/role")
+	{
+		role.GET("/role-all", api.GetRoleAll)
+		role.GET("/rolename/:id", api.GetRoleByUserId)
+	}
+
+	ws := r.Group("/ws")
+	{
+		websocket.Main(ws)
+	}
 	r.Run(properties.PortServe)
 }
